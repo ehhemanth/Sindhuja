@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎉 Happy Birthday! 🎂</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1"></script>
+    <style>
+        body {
+            text-align: center;
+            background: linear-gradient(45deg, #ff66b2, #ffcc00, #33ccff, #ff3399);
+            background-size: 300% 300%;
+            animation: gradientBG 10s infinite alternate;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            color: white;
+        }
+        @keyframes gradientBG {
+            0% { background-position: left; }
+            100% { background-position: right; }
+        }
+        h1 {
+            font-size: 3em;
+            animation: glow 1s infinite alternate;
+        }
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px rgb(252, 0, 0); }
+            100% { text-shadow: 0 0 20px rgb(238, 255, 0); }
+        }
+        .button {
+            padding: 12px 30px;
+            font-size: 20px;
+            background: #ff3399;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 0 15px rgba(255, 0, 102, 0.8);
+            transition: 0.3s;
+        }
+        .button:hover {
+            background: #ff0066;
+            box-shadow: 0 0 25px rgba(255, 0, 102, 1);
+        }
+        img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            margin-top: 20px;
+            box-shadow: 0px 0px 20px rgba(255, 0, 102, 0.5);
+            object-fit: cover;
+        }
+        .heart, .balloon, .star {
+            position: fixed;
+            font-size: 2em;
+            opacity: 0.8;
+            animation: floatUp 6s linear infinite;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1 style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;color: #d03cb0;"> 🎂 HAPPY BIRTHDAY PADIPS 💖 </h1>
+    <img src="prince (1).avif" alt="Birthday Cake">
+    <p style="font-size: 20px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color: #ff0066;" >Wishing you a fantastic day filled with love & joy! ❤️💖</p>
+
+    <button class="button" onclick="playMusic()">Play Birthday Song 🎶</button>
+
+    <audio id="birthdaySong">
+        <source src="the-birthday-gift-masstamilan.fm (1).mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        function playMusic() {
+            let song = document.getElementById('birthdaySong');
+            if (song.paused) {
+                song.play();
+                startFireworks();
+            } else {
+                song.pause();
+                song.currentTime = 0;
+            }
+        }
+
+        function startConfetti() {
+            setInterval(() => {
+                confetti({
+                    particleCount: 15,
+                    spread: 160,
+                    origin: { x: Math.random(), y: Math.random() * 0.5 },
+                    colors: ['#ff0000', '#ff6600', '#ffff00', '#33cc33', '#3399ff', '#9933ff']
+                });
+            }, 500);
+        }
+
+        function createFloatingObject(type, emojis, duration) {
+            const obj = document.createElement("div");
+            obj.classList.add(type);
+            obj.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+            obj.style.left = Math.random() * 100 + "vw";
+            obj.style.animationDuration = Math.random() * duration + 4 + "s";
+            document.body.appendChild(obj);
+            setTimeout(() => obj.remove(), 6000);
+        }
+
+        function startFloatingEffects() {
+            setInterval(() => createFloatingObject("heart", ["❤", "💜", "💙", "💛"], 6), 400);
+        }
+      
+
+        function startFireworks() {
+            setInterval(() => {
+                confetti({
+                    particleCount: 100,
+                    spread: 180,
+                    colors: ['#ff0000', '#ff6600', '#ffff00', '#33cc33', '#3399ff', '#9933ff'],
+                    origin: { x: Math.random(), y: Math.random() }
+                });
+            }, 1500);
+        }
+
+        window.onload = function () {
+            startConfetti();
+            startFloatingEffects();
+        };
+    </script>
+
+</body>
+</html>
